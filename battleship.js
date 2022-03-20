@@ -158,4 +158,22 @@ const Gameboard = () => {
   };
 };
 
-module.exports = { Ship, Gameboard };
+const Player = (playerName, type, turn) => {
+
+  function playComputerMoves(boardObject, tempboard) {
+    if (turn) {
+      const randomIndex = (Math.floor(Math.random() * tempboard.length));
+      boardObject.receiveAttack(randomIndex, randomIndex);
+    }
+  }
+
+  return {
+    playerName,
+    type,
+    turn,
+    playComputerMoves
+    
+  }
+}
+
+module.exports = { Ship, Gameboard, Player };

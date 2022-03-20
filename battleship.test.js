@@ -1,5 +1,5 @@
 const { expect } = require('@jest/globals');
-const {Ship, Gameboard} = require('./battleship')
+const {Ship, Gameboard, Player} = require('./battleship')
 
 const newShip = Ship('newShip', 4)
 test('ship length parameter', () => {
@@ -86,3 +86,15 @@ newGameboard.placeShip(9, 9, newGameboard.destroyer, true, false)
       expect(newGameboard.board[4][0]).toBe('hit');
     });
   })
+
+  const tempFunc = () => {
+  const newGameboard2 = Gameboard();
+  const newGameboard2board = newGameboard2.board;
+    const computer = Player('computer', 'computer', true);
+    computer.playComputerMoves(newGameboard2, newGameboard2board);
+    const flatArr = newGameboard2board.flat();
+    return flatArr
+  }
+  test('computer move was played', () => {
+    expect(tempFunc()).toContain(1);
+  });
