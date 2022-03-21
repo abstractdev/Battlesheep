@@ -1,4 +1,4 @@
-const Ship = (shipName, length) => {
+export const Ship = (shipName, length) => {
   let ship = Array(length).fill(length);
     for (let i = 0; i < ship.length; i++) {
      ship[i] = `${shipName}${i}`
@@ -18,7 +18,7 @@ const Ship = (shipName, length) => {
     isSunk,
   };
 };
-const Gameboard = () => {
+export const Gameboard = (boardName) => {
   const board = [
     new Array(10).fill(0),
     new Array(10).fill(0),
@@ -71,8 +71,6 @@ const Gameboard = () => {
   }
 
   function receiveAttack(x, y) {
-    let hitCounter = 0;
-    setEndGameCondition(hitCounter)
     switch (board[x][y]) {
       case 0:
         board[x][y] = 1
@@ -81,64 +79,63 @@ const Gameboard = () => {
       //   break;
       case "Destroyer0":
         destroyer.hit(0)
-        updateBoardHitState(hitCounter, board, x, y) 
+        updateBoardHitState(board, x, y)
       case "Destroyer1":
-        updateBoardHitState(hitCounter, board, x, y)
+        updateBoardHitState(board, x, y)
         break;
       case "Submarine0":
           submarine.hit(0)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Submarine1":
           submarine.hit(1)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Submarine2":
           submarine.hit(2)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
         break;
       case "Cruiser0":
           cruiser.hit(0)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Cruiser1":
           cruiser.hit(1)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Cruiser2":
           cruiser.hit(2)
-          updateBoardHitState(hitCounter, board, x, y)
+          updateBoardHitState(board, x, y)
         break;
       case "Battleship0":
           battleship.hit(0)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Battleship1":
           battleship.hit(1)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Battleship2":
           battleship.hit(2)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Battleship3":
           battleship.hit(3)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
         break;
       case "Carrier0":
           carrier.hit(0)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Carrier1":
           carrier.hit(1)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Carrier2":
           carrier.hit(2)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Carrier3":
           carrier.hit(3)
-          updateBoardHitState(hitCounter, board, x, y) 
+          updateBoardHitState(board, x, y) 
       case "Carrier4":
           carrier.hit(4)
-          updateBoardHitState(hitCounter, board, x, y)
+          updateBoardHitState(board, x, y)
         break;
     
     }
   }
-  function updateBoardHitState(hitCounter, board, x, y) {
-    hitCounter ++;
+  function updateBoardHitState(board, x, y) {
     board[x][y] = 'hit';
   }
   function setEndGameCondition (hitCounter) {
@@ -146,7 +143,30 @@ const Gameboard = () => {
       board[9][9] = 'GAME IS OVER'
     }
   }
+  function convertInputToAttack(e) {
+    const displayId = e.target.dataset.id;
+    const firstIndex = displayId.charAt(8);
+    const secondIndex = displayId.charAt(9);
+    const coordinates = [(parseInt(firstIndex)),(parseInt(secondIndex))]
+    return coordinates
+  }
+
+  const allCoordinates = board.map((i => i.map((j => j))))
+  for (let i = 0; i < allCoordinates.length; i++) {
+    for (let j = 0; j < allCoordinates[i].length; j++) {
+      allCoordinates[i][j] = [i,j]
+    }
+  }
+  let allCoordinatesFlat = allCoordinates.flat()
+  function getRandomCoordinates () {
+    let randomIndex = (Math.floor(Math.random() * allCoordinatesFlat.length))
+    let randomCoordinates = allCoordinatesFlat[randomIndex]
+    const savedRandomCoordinates = randomCoordinates
+    allCoordinatesFlat.splice(randomIndex, 1)
+    return savedRandomCoordinates
+  }
   return {
+    boardName,
     board,
     destroyer,
     submarine,
@@ -154,26 +174,18 @@ const Gameboard = () => {
     battleship,
     carrier,
     placeShip,
-    receiveAttack
+    receiveAttack,
+    convertInputToAttack,
+    getRandomCoordinates
   };
 };
 
-const Player = (playerName, type, turn) => {
-
-  function playComputerMoves(boardObject, tempboard) {
-    if (turn) {
-      const randomIndex = (Math.floor(Math.random() * tempboard.length));
-      boardObject.receiveAttack(randomIndex, randomIndex);
-    }
-  }
-
+export const Player = (playerName, type, turn) => {
+  
   return {
     playerName,
     type,
-    turn,
-    playComputerMoves
-    
+    turn
   }
 }
 
-module.exports = { Ship, Gameboard, Player };
