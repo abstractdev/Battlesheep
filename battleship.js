@@ -37,7 +37,7 @@ export const Gameboard = (boardName) => {
   const battleship = Ship("Battleship", 4);
   const carrier = Ship("Carrier", 5);
 
-  function placeShip(xStart, yStart, ship, horizontal, vertical) {
+  function placeShip(xStart, yStart, ship, horizontal) {
     //prevent placing multiples of the same ship
     const flatBoard = board.flat()
     if ((flatBoard.some((e) => {
@@ -46,7 +46,7 @@ export const Gameboard = (boardName) => {
       return
     }
 
-    if (vertical) {
+    if (!horizontal) {
        //prevent invalid placement
        if (xStart + ship.length > 10) {
         return
@@ -93,66 +93,147 @@ export const Gameboard = (boardName) => {
       case 0:
         board[x][y] = 1
         break;
-      case "Destroyer0" || "Destroyer0v":
+      case "Destroyer0":
         destroyer.hit(0)
         updateBoardHitState(board, x, y)
-      case "Destroyer1" || "Destroyer1v":
+        break;
+      case "Destroyer0v":
+        destroyer.hit(0)
         updateBoardHitState(board, x, y)
         break;
-      case "Submarine0" ||  "Submarine0v":
+      case "Destroyer1":
+        updateBoardHitState(board, x, y)
+        destroyer.hit(1)
+        break;
+      case "Destroyer1v":
+        updateBoardHitState(board, x, y)
+        destroyer.hit(1)
+        break;
+      case "Submarine0":
+        submarine.hit(0)
+        updateBoardHitState(board, x, y) 
+        break;
+      case "Submarine0v":
           submarine.hit(0)
-          updateBoardHitState(board, x, y) 
-      case "Submarine1" ||  "Submarine1v":
+          updateBoardHitState(board, x, y)
+          break;
+      case "Submarine1":
           submarine.hit(1)
           updateBoardHitState(board, x, y) 
-      case "Submarine2" ||  "Submarine2v":
+          break;
+      case "Submarine1v":
+          submarine.hit(1)
+          updateBoardHitState(board, x, y) 
+          break;
+      case "Submarine2":
+          submarine.hit(2)
+          updateBoardHitState(board, x, y) 
+          break;
+      case "Submarine2v":
           submarine.hit(2)
           updateBoardHitState(board, x, y) 
         break;
-      case "Cruiser0" ||  "Cruiser0v":
+      case "Cruiser0":
           cruiser.hit(0)
           updateBoardHitState(board, x, y) 
-      case "Cruiser1" ||  "Cruiser1v":
+          break;
+      case "Cruiser0v":
+          cruiser.hit(0)
+          updateBoardHitState(board, x, y)
+          break;
+      case "Cruiser1":
           cruiser.hit(1)
-          updateBoardHitState(board, x, y) 
-      case "Cruiser2" ||  "Cruiser2v":
+          updateBoardHitState(board, x, y)
+          break; 
+      case "Cruiser1v":
+          cruiser.hit(1)
+          updateBoardHitState(board, x, y)
+          break;
+      case "Cruiser2":
           cruiser.hit(2)
           updateBoardHitState(board, x, y)
         break;
-      case "Battleship0" ||  "Battleship0v":
+      case "Cruiser2v":
+          cruiser.hit(2)
+          updateBoardHitState(board, x, y)
+        break;
+      case "Battleship0":
           battleship.hit(0)
-          updateBoardHitState(board, x, y) 
-      case "Battleship1" ||  "Battleship1v":
+          updateBoardHitState(board, x, y)
+          break
+      case "Battleship0v":
+          battleship.hit(0)
+          updateBoardHitState(board, x, y)
+          break
+      case "Battleship1":
           battleship.hit(1)
-          updateBoardHitState(board, x, y) 
-      case "Battleship2" ||  "Battleship2v":
+          updateBoardHitState(board, x, y)
+          break
+      case "Battleship1v":
+          battleship.hit(1)
+          updateBoardHitState(board, x, y)
+          break
+      case "Battleship2":
           battleship.hit(2)
-          updateBoardHitState(board, x, y) 
-      case "Battleship3" ||  "Battleship3v":
+          updateBoardHitState(board, x, y)
+          break
+      case "Battleship2v":
+          battleship.hit(2)
+          updateBoardHitState(board, x, y)
+          break
+      case "Battleship3":
           battleship.hit(3)
           updateBoardHitState(board, x, y) 
         break;
-      case "Carrier0" ||  "Carrier0v":
+      case "Battleship3v":
+          battleship.hit(3)
+          updateBoardHitState(board, x, y) 
+        break;
+      case "Carrier0":
+          carrier.hit(0)
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier0v":
           carrier.hit(0)
           updateBoardHitState(board, x, y) 
-      case "Carrier1" ||  "Carrier1v":
+          break;
+      case "Carrier1":
           carrier.hit(1)
-          updateBoardHitState(board, x, y) 
-      case "Carrier2" ||  "Carrier2v":
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier1v":
+          carrier.hit(1)
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier2":
           carrier.hit(2)
-          updateBoardHitState(board, x, y) 
-      case "Carrier3" ||  "Carrier3v":
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier2v":
+          carrier.hit(2)
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier3":
           carrier.hit(3)
-          updateBoardHitState(board, x, y) 
-      case "Carrier4" ||  "Carrier4v":
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier3v":
+          carrier.hit(3)
+          updateBoardHitState(board, x, y)
+          break;
+      case "Carrier4":
           carrier.hit(4)
           updateBoardHitState(board, x, y)
         break;
-    
+      case "Carrier4v":
+          carrier.hit(4)
+          updateBoardHitState(board, x, y)
+        break;
     }
   }
   function updateBoardHitState(board, x, y) {
     board[x][y] = 'hit';
+    console.log('hit');
   }
   function convertInputToCoordinates(e) {
     const displayId = e.target.dataset.id;
@@ -161,7 +242,6 @@ export const Gameboard = (boardName) => {
     if (displayId.charAt(0) === 'c') {
       firstIndex = displayId.charAt(8);
       secondIndex = displayId.charAt(9);
-      console.log(firstIndex);
     }else if (displayId.charAt(0) === 'p') {
       firstIndex = displayId.charAt(6);
       secondIndex = displayId.charAt(7);
@@ -182,15 +262,32 @@ export const Gameboard = (boardName) => {
     let randomCoordinates = allCoordinatesFlat[randomIndex]
     const savedRandomCoordinates = randomCoordinates
     allCoordinatesFlat.splice(randomIndex, 1)
+    console.log(allCoordinatesFlat);
     return savedRandomCoordinates
   }
 
+  const getrandomIndex = () => (Math.floor(Math.random() * 9));
   function placeComputerShips(computerGameboard) {
-    computerGameboard.placeShip(0, 0, computerGameboard.destroyer, true, false)
-    computerGameboard.placeShip(1, 0, computerGameboard.submarine, true, false)
-    computerGameboard.placeShip(2, 0, computerGameboard.cruiser, true, false)
-    computerGameboard.placeShip(3, 0, computerGameboard.battleship, true, false)
-    computerGameboard.placeShip(4, 0, computerGameboard.carrier, true, false)
+    let flatBoard = computerGameboard.board.flat();
+    const all = ['Destroyer0', 'Submarine0', 'Cruiser0', 'Battleship0', 'Carrier0']
+    if (!flatBoard.some((e => e === 'Destroyer0'))) {
+      computerGameboard.placeShip(getrandomIndex(), getrandomIndex(), computerGameboard.destroyer, true)
+    }
+    if (!flatBoard.some((e => e === 'Submarine0'))) {
+      computerGameboard.placeShip(getrandomIndex(), getrandomIndex(), computerGameboard.submarine, true)
+    }
+    if (!flatBoard.some((e => e === 'Cruiser0'))) {
+      computerGameboard.placeShip(getrandomIndex(), getrandomIndex(), computerGameboard.cruiser, true)
+    }
+    if (!flatBoard.some((e => e === 'Battleship0'))) {
+      computerGameboard.placeShip(getrandomIndex(), getrandomIndex(), computerGameboard.battleship, true)
+    }
+    if (!flatBoard.some((e => e === 'Carrier0'))) {
+      computerGameboard.placeShip(getrandomIndex(), getrandomIndex(), computerGameboard.carrier, true)
+    }
+    if (!all.every((e => flatBoard.includes(e)))) {
+      placeComputerShips(computerGameboard)
+    }
   }
 
   return {
