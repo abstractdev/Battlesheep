@@ -8,7 +8,9 @@ export const Display = (() => {
   const battleshipContainer = document.querySelector('.battleship-container')
   const carrierContainer = document.querySelector('.carrier-container')
   const computerGameboardContainer = document.querySelector('.computer-gameboard-container')
-  const placementText = document.querySelector('.placement-text')
+  const playerGameboardContainer = document.querySelector('.player-gameboard-container')
+  const placementContainer = document.querySelector('.placement-container')
+  const modalContainer = document.querySelector('.modal-container')
   
   function renderBoard(gameBoardObj, boardName, container) {
     while (container.hasChildNodes()) {
@@ -24,7 +26,7 @@ export const Display = (() => {
         for (let j = 0; j < gameBoardObj.board[i].length; j++) {
             const cell = document.createElement('div');
             cell.setAttribute('data-id', `${boardName}${i}${j}`);
-            cell.classList.add('cell')
+            cell.classList.add(`${boardName}-cell`)
           if(boardName === 'player') {
             switch (gameBoardObj.board[i][j]) {
               case 0:
@@ -132,7 +134,7 @@ export const Display = (() => {
   }
   function dragOver(event) {
     event.preventDefault()
-    event.dataTransfer.dragEffect = 'copy';
+    event.dataTransfer.dragEffect = 'move';
   }
   function drop(event) {
     event.preventDefault()
@@ -160,41 +162,35 @@ export const Display = (() => {
       function putShipInArray() {
         const placementCoordinates = Game.playerGameboard.convertInputToCoordinates(event)
         if (document.getElementById(data).parentNode.classList.contains('vertical')) {
-          Game.playerGameboard.placeShip(placementCoordinates[0],placementCoordinates[1], shipName, false, true);
-          console.log(Game.playerGameboard.board);
+          Game.playerGameboard.placeShip(placementCoordinates[0],placementCoordinates[1], shipName, false);
         } else {
-        Game.playerGameboard.placeShip(placementCoordinates[0],placementCoordinates[1], shipName, true, false);
-        console.log(Game.playerGameboard.board);
+        Game.playerGameboard.placeShip(placementCoordinates[0],placementCoordinates[1], shipName, true);
         }
 
         const checkIfShipsArePlaced = (() => {
           const flatBoard = Game.playerGameboard.board.flat();
-          const allShips = ["Destroyer0", "Submarine0", "Cruiser0", "Battleship0", "Carrier0"]
           if (flatBoard.some((e => e === "Destroyer0" || e === "Destroyer0v"))) {
-            console.log('des');
             destroyerContainer.style.display = 'none';
             submarineContainer.classList.add('show');
           }
           if (flatBoard.some((e => e === "Submarine0" || e === "Submarine0v"))) {
-            console.log('sub');
             submarineContainer.style.display = 'none';
             cruiserContainer.classList.add('show');
           }
           if (flatBoard.some((e => e === "Cruiser0" || e === "Cruiser0v"))) {
-            console.log('cru');
             cruiserContainer.style.display = 'none';
             battleshipContainer.classList.add('show');
           }
           if (flatBoard.some((e => e === "Battleship0" || e === "Battleship0v"))) {
-            console.log('bat');
             battleshipContainer.style.display = 'none';
             carrierContainer.classList.add('show');
           }
           if (flatBoard.some((e => e === "Carrier0" || e === "Carrier0v"))) {
-            console.log('car');
             carrierContainer.style.display = 'none';
-            placementText.style.display = 'none'
+            placementContainer.style.display = 'none'
             computerGameboardContainer.style.pointerEvents = 'all';
+            playerGameboardContainer.style.pointerEvents = 'none';
+            document.querySelector(".attack-container").style.display = 'flex';
           }
         })()
       }
@@ -240,9 +236,15 @@ export const Display = (() => {
     return promise
   }
 
+  function displayWinnerModal(winnerMessage) {
+    modalContainer.textContent = winnerMessage;
+    modalContainer.classList.add('show');
+  }
+
   return {
     renderBoard,
-    initShipPlacement
+    initShipPlacement,
+    displayWinnerModal
   }
 })();
 
