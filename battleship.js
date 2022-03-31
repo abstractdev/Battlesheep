@@ -233,7 +233,6 @@ export const Gameboard = (boardName) => {
   }
   function updateBoardHitState(board, x, y) {
     board[x][y] = 'hit';
-    console.log('hit');
   }
   function convertInputToCoordinates(e) {
     const displayId = e.target.dataset.id;
@@ -262,7 +261,6 @@ export const Gameboard = (boardName) => {
     let randomCoordinates = allCoordinatesFlat[randomIndex]
     const savedRandomCoordinates = randomCoordinates
     allCoordinatesFlat.splice(randomIndex, 1)
-    console.log(allCoordinatesFlat);
     return savedRandomCoordinates
   }
 
