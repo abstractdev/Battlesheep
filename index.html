@@ -9,42 +9,61 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="placement-container">
-            <div class="placement-text">Place your sheep<br>(click to toggle axis)</div>
-                <div class="ship-container">
-                    <div class=destroyer-container>
-                        <div class="destroyer" draggable="true" id ="destroyer"> </div>
-                    </div>
-                    <div class="submarine-container">
-                        <div class="submarine" draggable="true" id ="submarine"> </div>
-                    </div>
-                    <div class="cruiser-container">
-                        <div class="cruiser" draggable="true" id ="cruiser"> </div>
-                    </div>
-                    <div class="battleship-container">
-                        <div class="battleship" draggable="true" id ="battleship"> </div>
-                    </div>
-                    <div class="carrier-container">
-                        <div class="carrier" draggable="true" id ="carrier"> </div>
+            <div class="main-container">
+                <div class="top-container" draggable="false">
+                    <div class="header">Battlesheep</div>
+                    <div class="board-container">
+                        <div class="player-gameboard-container">
+                        </div>
+                        <div class="computer-gameboard-container">
+                        </div>
                     </div>
                 </div>
-        </div>
-        <div class="top-container">
-            <div class="header">Battlesheeps</div>
-            <div class="board-container">
-                <div class="player-gameboard-container">
+                    <div class="placement-container">
+                        <img src="https://img.icons8.com/external-creatype-blue-field-colourcreatype/64/000000/external-arrow-arrows-creatype-blue-field-colourcreatype-10.png" alt="left arrow" srcset="">
+                        <div class="placement-text">Place your sheep!<br>(click to toggle axis)</div>
+                            <div class="ship-container">
+                                <div class=destroyer-container>
+                                    <div class="destroyer" draggable="true" id ="destroyer"> </div>
+                                </div>
+                                <div class="submarine-container">
+                                    <div class="submarine" draggable="true" id ="submarine"> </div>
+                                </div>
+                                <div class="cruiser-container">
+                                    <div class="cruiser" draggable="true" id ="cruiser"> </div>
+                                </div>
+                                <div class="battleship-container">
+                                    <div class="battleship" draggable="true" id ="battleship"> </div>
+                                </div>
+                                <div class="carrier-container">
+                                    <div class="carrier" draggable="true" id ="carrier"> </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="attack-container">
+                        <img src="https://img.icons8.com/external-creatype-blue-field-colourcreatype/64/000000/external-arrow-arrows-creatype-blue-field-colourcreatype-12.png" alt="right arrow" srcset="">
+                        <div class="attack">Attack!</div>
+                    </div>
                 </div>
-                <div class="computer-gameboard-container">
-                </div>
+                    <div class="destroyer-clone rotate" id ="destroyer-clone"></div>
+                    <div class="submarine-clone rotate" id ="submarine-clone"></div>
+                    <div class="cruiser-clone rotate" id ="cruiser-clone"></div>
+                    <div class="battleship-clone rotate" id ="battleship-clone"></div>
+                    <div class="carrier-clone rotate" id ="carrier-clone"></div>
+        <div class="modal-container">
+            <div class="modal">
             </div>
         </div>
-        <div class="clone-cover">
-        </div>
-        <div class="destroyer-clone rotate" id ="destroyer-clone"></div>
-        <div class="submarine-clone rotate" id ="submarine-clone"></div>
-        <div class="cruiser-clone rotate" id ="cruiser-clone"></div>
-        <div class="battleship-clone rotate" id ="battleship-clone"></div>
-        <div class="carrier-clone rotate" id ="carrier-clone"></div>
+        <footer>
+            <ul>
+                <li><a target="_blank" href="https://icons8.com/icon/mdMv2vbQpa9K/grass">Grass icon by Icons8</a></li>
+                <li><a target="_blank" href="https://icons8.com/icon/mKi7XHD5E3Xw/grass">Grass icon by Icons8</a></li>
+                <li><a target="_blank" href="https://icons8.com/icon/-OctKQmcB6pJ/sheep">Sheep icon by Icons8</a></li>
+                <li><a target="_blank" href="https://icons8.com/icon/LZtGgAmh0n0e/bullseye">Bullseye icon by Icons8</a></li>
+                <li><a target="_blank" href="https://icons8.com/icon/t5DuxCdSQKEx/arrow">Arrow icon by Icons8</a></li>
+                <li><a target="_blank" href="https://icons8.com/icon/0LZ8QzzgkUzO/arrow">Arrow icon by Icons8</a></li>
+            </ul>
+        </footer>
         <script type = "module" src="game.js"></script>
     </body>
 </html>
