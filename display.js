@@ -206,12 +206,12 @@ export const Display = (() => {
   
 
   function dragEnter(event) {
-    if (event.target.className === 'cell') {
+    if (event.target.className === 'player-cell') {
       event.target.style.border = '5px solid seashell'
     }
   }
   function dragLeave(event) {
-    if (event.target.className === 'cell') {
+    if (event.target.className === 'player-cell') {
       event.target.style.border = ''
     }
   }
