@@ -28,7 +28,7 @@ export const Game = (() => {
   Display.initShipPlacement();
   //1 turn
     document.querySelector('.computer-gameboard-container').addEventListener('click', (e) => {
-      if (e.target.className === 'cell') {
+      if (e.target.className === 'computer-cell') {
       //record user attack on board array
         const coordinates = computerGameboard.convertInputToCoordinates(e);
         computerGameboard.receiveAttack(coordinates[0], coordinates[1])
