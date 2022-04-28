@@ -100,7 +100,8 @@ export const Display = (() => {
                 'url("https://img.icons8.com/emoji/25/000000/bullseye.png")';
               break;
             default:
-              cell.style.backgroundImage = 'url("https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/25/000000/external-grass-jungle-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png")';
+              cell.style.backgroundImage =
+                'url("https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/25/000000/external-grass-jungle-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png")';
               break;
           }
         }
