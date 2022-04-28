@@ -1,4 +1,4 @@
-# BattleSheep
+# Battlesheep
 ![Alt text](./battlesheep.png "Title")
 ============
 
