@@ -1,4 +1,4 @@
-# Battlesheep
+# Battlesheep [LIVE](https://abstractdev.github.io/Battlesheep/)
 ![Alt text](./battlesheep.png "Title")
 ============
 
