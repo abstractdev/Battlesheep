@@ -1,5 +1,5 @@
 # Battlesheep [LIVE](https://abstractdev.github.io/Battlesheep/)
-![Alt text](./battlesheep.png "Title")
+![Alt text](./battlesheep.png "Battlesheep")
 ============
 
 A "sheepish" take on the classic Battleship game.
