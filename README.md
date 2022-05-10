@@ -15,7 +15,6 @@ A "sheepish" take on the classic Battleship game.
 ## Built With
 - Vanilla Javascript
 - Sass
-- Webpack
 - Jest
 ## Concepts / Things I learned
 - Test Driven Development
