@@ -28,36 +28,43 @@ export const Game = (() => {
   document
     .querySelector(".computer-gameboard-container")
     .addEventListener("click", (e) => {
-      if (e.target.className === "computer-cell") {
+      if (
+        e.target.className === "computer-cell" &&
+        e.target.style.backgroundImage ===
+          'url("https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/25/000000/external-grass-jungle-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png")'
+      ) {
         //record user attack on board array
         const coordinates = computerGameboard.convertInputToCoordinates(e);
         computerGameboard.receiveAttack(coordinates[0], coordinates[1]);
-        const flat = computerGameboard.board.flat();
-        const filtered = flat.filter((element) => {
+        const compFlat = computerGameboard.board.flat();
+        const compFiltered = compFlat.filter((element) => {
           return element === "hit";
         });
-        computerHitCounter = filtered.length;
+        computerHitCounter = compFiltered.length;
+        //display user attack
+        Display.renderBoard(
+          computerGameboard,
+          computerGameboard.boardName,
+          document.querySelector(".computer-gameboard-container")
+        );
+        //play computer move
+        const randomCoordinates = playerGameboard.getRandomCoordinates();
+        playerGameboard.receiveAttack(
+          randomCoordinates[0],
+          randomCoordinates[1]
+        );
+        const playerFlat = playerGameboard.board.flat();
+        const playerFiltered = playerFlat.filter((element) => {
+          return element === "hit";
+        });
+        playerHitCounter = playerFiltered.length;
+        //display computer move
+        Display.renderBoard(
+          playerGameboard,
+          playerGameboard.boardName,
+          document.querySelector(".player-gameboard-container")
+        );
       }
-      //display user attack
-      Display.renderBoard(
-        computerGameboard,
-        computerGameboard.boardName,
-        document.querySelector(".computer-gameboard-container")
-      );
-      //play computer move
-      const randomCoordinates = playerGameboard.getRandomCoordinates();
-      playerGameboard.receiveAttack(randomCoordinates[0], randomCoordinates[1]);
-      const flat = playerGameboard.board.flat();
-      const filtered = flat.filter((element) => {
-        return element === "hit";
-      });
-      playerHitCounter = filtered.length;
-      //display computer move
-      Display.renderBoard(
-        playerGameboard,
-        playerGameboard.boardName,
-        document.querySelector(".player-gameboard-container")
-      );
 
       if (computerHitCounter === 17) {
         Display.displayWinnerModal(`${player.playerName} wins!`);
