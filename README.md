@@ -1,8 +1,8 @@
 # Battlesheep
-[![Battlesheep](/battlesheep1.png)](https://abstractdev.github.io/Battlesheep/)
+[![Battlesheep](/battlesheep1.png)](https://abstractdev.github.io/battlesheep/)
 ============
 
-[Live Demo](https://abstractdev.github.io/Battlesheep/)</br>
+[Live Demo](https://abstractdev.github.io/battlesheep/)</br>
 A "sheepish" take on the classic Battleship game.
 
 ---
