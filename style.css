@@ -224,6 +224,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   font-family: "Rye", cursive;
+  z-index: 1;
 }
 
 .placement-text {
@@ -473,6 +474,7 @@ body {
   position: fixed;
   top: 10000px;
   left: 0;
+  z-index: 1;
 }
 
 .show {
