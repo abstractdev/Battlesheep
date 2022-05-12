@@ -131,11 +131,12 @@ body {
   align-items: center;
   justify-content: center;
   background-image: url("./farm.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
   color: #f5f6f8;
   font-family: "Smokum", cursive;
-  overflow: hidden;
-  z-index: 10;
+  // overflow: hidden;
 }
 
 .main-container {
@@ -358,7 +359,6 @@ body {
 .carrier-clone {
   position: fixed;
   top: 10000px;
-  left: 0;
   z-index: 1;
 }
 .show {
