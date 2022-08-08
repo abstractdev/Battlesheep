@@ -1,6 +1,5 @@
-# Battlesheep
-[![Battlesheep](/battlesheep1.png)](https://abstractdev.github.io/battlesheep/)
-============
+# [Battlesheep](https://abstractdev.github.io/battlesheep/)
+https://user-images.githubusercontent.com/97710625/183330051-2b81fbc7-451f-47d3-82a6-8ec3c08e7549.mp4
 
 [Live Demo](https://abstractdev.github.io/battlesheep/)</br>
 A "sheepish" take on the classic Battleship game.
@@ -23,4 +22,3 @@ A "sheepish" take on the classic Battleship game.
 - Implementing drag and drop
 - Creating/hiding drag images
 ---
-
